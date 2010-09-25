@@ -2,7 +2,7 @@ require File.join(File.dirname(__FILE__),'example_helper')
 
 describe "Configuring" do
 
-  it "raise ConfigFileNotFoundError if cannot find config file" do
+  it "should raise ConfigFileNotFoundError if cannot find config file" do
     Goenka.config_file = config_file = '/missing/file'
     lambda { Goenka.configure }.should raise_error(
       Goenka::ConfigFileNotFoundError,
@@ -10,7 +10,7 @@ describe "Configuring" do
     )
   end
 
-  it "config file settings should override defaults" do
+  it "should have config file settings should override defaults" do
     Goenka.config_file = config_file = data_file('goenka.yml')
     custom = YAML.load_file(config_file)
     Goenka.configure
