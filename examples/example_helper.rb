@@ -15,3 +15,6 @@ Micronaut.configure do |c|
   c.filter_run :focused => true
 end
 
+def data_file(*args)
+  File.join(File.dirname(__FILE__), 'data', *args)
+end
