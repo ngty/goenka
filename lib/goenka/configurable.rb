@@ -5,7 +5,7 @@ module Goenka
   module Configurable
 
     DEFAULTS = {
-      :config_file => File.join(ENV['HOME'], '.goenka.yml'),
+      :config_file => File.join(ENV['HOME'], '.goenka', 'config.yml'),
       :picasa_albums_dir => File.join(
         ENV['HOME'], '.google/picasa/3.0/drive_c/Documents\ and\ Settings', ENV['USER'],
         'Local\ Settings/Application\ Data/Google/Picasa2Albums'

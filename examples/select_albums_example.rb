@@ -3,7 +3,7 @@ require File.join(File.dirname(__FILE__),'example_helper')
 describe "Selecting Albums" do
 
   before do
-    Goenka.config_file = data('goenka.yml')
+    Goenka.config_file = data('goenka/config.yml')
     Goenka.configure
   end
 
