@@ -24,9 +24,11 @@ module Goenka
 
     def select_all
       picasa_album_files.map do |file|
-        doc = Nokogiri::XML(File.open(file))
-        name = doc.xpath('//property[@name="name"]/@value').first.to_s
-        Album.new(name, files_within(doc))
+        File.open(file,'r') do |f|
+          doc = Nokogiri::XML(f)
+          name = doc.xpath('//property[@name="name"]/@value').first.to_s
+          Album.new(name, files_within(doc))
+        end
       end.sort_by(&:name)
     end
 
