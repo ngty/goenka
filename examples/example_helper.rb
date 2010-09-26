@@ -35,9 +35,3 @@ def requests(*args)
     end.sort_by(&:name)
   end
 end
-
-class Curl::PostField
-  def ==(other)
-    to_s == other.to_s
-  end
-end
