@@ -1,16 +1,17 @@
 module Goenka
 
   class ConfigFileNotFoundError < Exception ; end
+  class UploadProfileNotFoundError < Exception ; end
 
   module Configurable
 
     DEFAULTS = {
       :config_file => File.join(ENV['HOME'], '.goenka', 'config.yml'),
-      :upload_profile => 'default',
       :picasa_albums_dir => File.join(
         ENV['HOME'], '.google/picasa/3.0/drive_c/Documents\ and\ Settings', ENV['USER'],
         'Local\ Settings/Application\ Data/Google/Picasa2Albums'
       ),
+      :upload_profile => nil,
       :flickr_api_key => nil,
       :flickr_shared_secret => nil
     }
@@ -39,7 +40,13 @@ module Goenka
 
     def upload_profile_config
       file = File.join(File.dirname(config_file), 'upload_profiles', "#{upload_profile}.yml")
-      yaml_to_config(file)
+      begin
+        yaml_to_config(file)
+      rescue Errno::ENOENT
+        if upload_profile # ONLY raise error if customization has been attempted
+          raise UploadProfileNotFoundError.new("Cannot find upload profile #{file} !!")
+        end
+      end
     end
 
   end

@@ -21,4 +21,15 @@ describe "Album to Requests" do
     ]
   end
 
+  it 'should raise Goenka::UploadProfileNotFoundError if upload profile is missing' do
+    Goenka.config_file = data('goenka/configX.yml')
+    Goenka.configure
+    lambda { album('awesome', %w{/pics/x1.jpg /pics/x2.jpg}).to_requests }.
+      should raise_error(
+        Goenka::UploadProfileNotFoundError,
+        'Cannot find upload profile %s !!' %
+          File.join(File.dirname(Goenka.config_file), 'upload_profiles', 'missing.yml')
+      )
+  end
+
 end
