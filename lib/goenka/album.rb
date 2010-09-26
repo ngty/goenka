@@ -11,18 +11,16 @@ module Goenka
       :content_type => '1',
       :title => '',
       :description => ''
-    }.map do |(k,v)|
-      Curl::PostField.content(k, v)
-    end
+    }
 
     def to_requests
       files.map do |file|
-        (default_requests + [Curl::PostField.file(:photo, file)]).sort_by(&:name)
+        default_requests.merge(:photo => file)
       end
     end
 
     def default_requests
-      @default_requests ||= (DEFAULT_REQUESTS + [Curl::PostField.content(:tags, name)])
+      @default_requests ||= DEFAULT_REQUESTS.merge(:tags => name)
     end
 
   end
