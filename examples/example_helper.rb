@@ -26,3 +26,18 @@ end
 def album(*args)
   Goenka::Album.new(*args)
 end
+
+def requests(*args)
+  args.map do |h|
+    h.map do |(k,v)|
+      meth = k == :photo ? :file : :content
+      Curl::PostField.send(meth, k, v)
+    end.sort_by(&:name)
+  end
+end
+
+class Curl::PostField
+  def ==(other)
+    to_s == other.to_s
+  end
+end
