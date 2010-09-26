@@ -12,11 +12,10 @@ module Goenka
     end
 
     def select_one(name)
-      album = nil
       pattern = %r(\<property\s+name="name"\s+type="string"\s+value="#{name}"\/\>)
       picasa_album_files.each do |file|
-        File.open(file,'r') do |f|
-          album = Album.new(name, files_within(f)) unless f.grep(pattern).empty?
+        album = File.open(file,'r') do |f|
+          Album.new(name, files_within(f)) unless f.grep(pattern).empty?
         end
         return album if album
       end
