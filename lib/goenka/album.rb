@@ -1,6 +1,7 @@
 module Goenka
   class Album < Struct.new(:name, :files)
 
+    # TODO: These can probably be stored as profile ?
     DEFAULT_REQUESTS = {
       :is_family => '1',
       :is_public => '0',
