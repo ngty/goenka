@@ -7,7 +7,7 @@ module Goenka
     def select(name)
       case name
       when :all then select_all
-      else select_one(name)
+      else [select_one(name)]
       end
     end
 

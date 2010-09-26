@@ -17,8 +17,9 @@ describe "Selecting Albums" do
 
   it "should return matching album if there is one" do
     album = 'awesome'
-    Goenka.select(album).should ==
+    Goenka.select(album).should == [
       album(album, (1..3).map{|i| home("pics/x#{i}.jpg") })
+    ]
   end
 
   it "should return all albums if given :all" do
