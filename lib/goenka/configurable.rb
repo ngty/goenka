@@ -19,11 +19,20 @@ module Goenka
     def configure
       begin
         # Preliminary config bypasses config file
-        opts = DEFAULTS
-        opts.update(YAML.load_file(config_file)) if config_file
+        opts = DEFAULTS.dup
+        if config_file
+          opts.delete(:config_file)
+          opts.update(yaml_config)
+        end
         opts.each{|key, val| Goenka.send(:"#{key}=", val) }
       rescue Errno::ENOENT
         raise ConfigFileNotFoundError.new("Cannot find config file #{config_file} !!")
+      end
+    end
+
+    def yaml_config
+      YAML.load_file(config_file).inject({}) do |memo,(k,v)|
+        memo.merge(k.to_sym => v)
       end
     end
 
