@@ -11,7 +11,7 @@ describe "Configuring" do
   end
 
   it "should have config file settings should override defaults" do
-    Goenka.config_file = config_file = data_file('goenka.yml')
+    Goenka.config_file = config_file = data('goenka.yml')
     custom = YAML.load_file(config_file)
     Goenka.configure
     Goenka.picasa_albums_dir = custom[:picasa_albums_dir]
