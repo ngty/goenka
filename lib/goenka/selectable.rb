@@ -41,8 +41,8 @@ module Goenka
         thing.rewind # we need to rewind !!
         thing = Nokogiri::XML(thing)
       end
-      thing.xpath('//files/filename/text()').map do |s|
-        s.to_s.gsub('\\','/').sub('$My Documents', ENV['HOME'])
+      thing.xpath('//files/filename/text()').map do |node|
+        node.to_s.gsub('\\','/').sub('$My Documents', ENV['HOME'])
       end.sort
     end
 
