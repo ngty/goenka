@@ -1,8 +1,7 @@
 module Goenka
   class Album < Struct.new(:name, :files)
 
-    # TODO: These can probably be stored as profile ?
-    DEFAULT_REQUESTS = {
+    PER_FILE_DEFAULTS = {
       :is_family => '1',
       :is_public => '0',
       :is_friend => '0',
@@ -15,12 +14,13 @@ module Goenka
 
     def to_requests
       files.map do |file|
-        default_requests.merge(:photo => file)
+        per_file_defaults.merge(:photo => file)
       end
     end
 
-    def default_requests
-      @default_requests ||= DEFAULT_REQUESTS.merge(:tags => name)
+    def per_file_defaults
+      @per_file_defaults ||=
+        PER_FILE_DEFAULTS.merge(:tags => name).merge(Goenka.upload_profile_config)
     end
 
   end
