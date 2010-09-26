@@ -43,9 +43,10 @@ module Goenka
       begin
         yaml_to_config(file)
       rescue Errno::ENOENT
-        if upload_profile # ONLY raise error if customization has been attempted
-          raise UploadProfileNotFoundError.new("Cannot find upload profile #{file} !!")
-        end
+        # It is OK to have missing upload profile, only if user has not attempted
+        # to explicitely specify any (meaning upload_profile remains nil)
+        return {} unless upload_profile
+        raise UploadProfileNotFoundError.new("Cannot find upload profile #{file} !!")
       end
     end
 
