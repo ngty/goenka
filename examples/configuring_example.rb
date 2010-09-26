@@ -15,8 +15,8 @@ describe "Configuring" do
     custom = YAML.load_file(config_file)
     Goenka.configure
     Goenka.picasa_albums_dir = custom[:picasa_albums_dir]
-    Goenka.flickr_id = custom[:flickr_id]
-    Goenka.flickr_password = custom[:flickr_password]
+    Goenka.flickr_api_key = custom[:flickr_api_key]
+    Goenka.flickr_shared_secret = custom[:flickr_shared_secret]
   end
 
 end

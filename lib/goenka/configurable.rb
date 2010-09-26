@@ -10,8 +10,8 @@ module Goenka
         ENV['HOME'], '.google/picasa/3.0/drive_c/Documents\ and\ Settings', ENV['USER'],
         'Local\ Settings/Application\ Data/Google/Picasa2Albums'
       ),
-      :flickr_id => nil,
-      :flickr_password => nil
+      :flickr_api_key => nil,
+      :flickr_shared_secret => nil
     }
 
     attr_accessor *DEFAULTS.keys
