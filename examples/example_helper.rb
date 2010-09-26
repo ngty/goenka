@@ -15,6 +15,14 @@ Micronaut.configure do |c|
   c.filter_run :focused => true
 end
 
-def data_file(*args)
+def data(*args)
   File.join(File.dirname(__FILE__), 'data', *args)
+end
+
+def home(*args)
+  File.join(ENV['HOME'], *args)
+end
+
+def album(*args)
+  Goenka::Album.new(*args)
 end

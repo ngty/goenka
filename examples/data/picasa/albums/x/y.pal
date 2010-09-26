@@ -1,0 +1,8 @@
+<picasa2album>
+ <property name="name" type="string" value="wonderful"/>
+ <files>
+  <filename>$My Documents\pics\y1.jpg</filename>
+  <filename>$My Documents\pics\y2.jpg</filename>
+  <filename>$My Documents\pics\y3.jpg</filename>
+ </files>
+</picasa2album>
